@@ -8,6 +8,7 @@
 
 import XCTest
 
+
 class JenkinsTests: XCTestCase {
     
     override func setUp() {
@@ -20,16 +21,71 @@ class JenkinsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testSaveInstance()
+    {
+        var ds =  GRInstanceDataSource()
+        
+        var model =  GRInstanceModel(name:"test", host:"test")
+        
+        ds.saveInstance(model)
+        
+        var found = false
+        
+        for(key,val) in ds.instances
+        {
+            if(key.compare(model.host) == 0)
+            {
+                found = true
+            }
+        }
+        
+        XCTAssertTrue(found, "unable to find model")
+        
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+    func testLoadOfInstances()
+    {
+        var ds =  GRInstanceDataSource()
+        
+        var model =  GRInstanceModel(name:"test", host:"test")
+        
+        ds.saveInstance(model)
+        
+        var found = false
+        
+        for(key,val) in ds.instances
+        {
+            if(key.compare(model.host) == 0)
+            {
+                found = true
+            }
         }
+        
+        XCTAssertTrue(found, "unable to find model")
+        
+        var ds2 = GRInstanceDataSource()
+        var savedModel = ds2.instances["test"]
+        XCTAssertNotNil(savedModel, "model is nil and should not be")
+        
     }
+    
+    func testRemoveInstance()
+    {
+        var ds =  GRInstanceDataSource()
+        var model =  GRInstanceModel(name:"test", host:"test")
+        ds.saveInstance(model)
+        ds.removeInstanceForKey("test")
+        
+
+        var ds2 = GRInstanceDataSource()
+        var savedModel = ds2.instances["test"]
+        XCTAssertNil(savedModel, "model is nil and should not be")
+    }
+    
+    func testMapCollection
+    {
+        
+    }
+    
     
 }
