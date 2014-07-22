@@ -8,19 +8,26 @@
 
 import UIKit
 
-class GRJnstancesViewController: UITableViewController {
+class GRJnstancesViewController: UITableViewController , UITableViewDelegate {
 
     let tableViewDataSource: GRInstanceDataSource? = GRInstanceDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureTableViewDataSource()
+        configureTableViewDataSource()
     }
     
     func configureTableViewDataSource(){
         tableViewDataSource!.registerIdentifiersForTableView(tableView)
         tableView.dataSource = tableViewDataSource
+        tableView.delegate = self
     }
+    
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     
     @IBAction func actionAddInstance(sender:AnyObject?) {
         tableViewDataSource!.saveInstance(GRInstanceModel(name:"feutil mobile", host:"http://feutil1:8080/view/Mobile-Ios"))

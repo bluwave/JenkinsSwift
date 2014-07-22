@@ -82,10 +82,6 @@ class JenkinsTests: XCTestCase {
         XCTAssertNil(savedModel, "model is nil and should not be")
     }
     
-    func testMapCollection
-    {
-        
-    }
     
     
 }

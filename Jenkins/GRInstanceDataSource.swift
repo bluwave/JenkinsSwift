@@ -50,7 +50,6 @@ class GRInstanceDataSource: NSObject , UITableViewDataSource {
     let cellIdentifier = "cell"
     var instances =  Dictionary<String, GRInstanceModel>()
     
-    
     init() {
         super.init()
         loadFromDefaults()
@@ -72,22 +71,18 @@ class GRInstanceDataSource: NSObject , UITableViewDataSource {
         return instances.count
     }
     
-    
     func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
         if let cell = tableView!.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? UITableViewCell
         {
             var r =  indexPath!.row
-            var instancesAsArray = instances.values
-            
-            
-            
-//            cell.textLabel.text =
-//            return cell
+            var instancesAsArray = Array(instances.values)
+
+            var model = instancesAsArray[indexPath!.row]
+            cell.textLabel.text = model.host
+            return cell
         }
         return nil;
     }
-    
-
 
     func loadFromDefaults()
     {
@@ -103,7 +98,6 @@ class GRInstanceDataSource: NSObject , UITableViewDataSource {
             }
         }
     }
-
    
     func saveInstance(instance:GRInstanceModel)
     {
