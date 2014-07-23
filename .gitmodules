@@ -1,0 +1,3 @@
+[submodule "lib/SwiftyJSON"]
+	path = lib/SwiftyJSON
+	url = git@github.com:lingoer/SwiftyJSON.git

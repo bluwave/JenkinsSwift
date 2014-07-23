@@ -26,6 +26,8 @@ class GRJnstancesViewController: UITableViewController , UITableViewDelegate {
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let client = GRJenkinsAPIClient()
+        client.getProjectList(nil)
     }
     
     
