@@ -32,7 +32,7 @@ class GRJnstancesViewController: UITableViewController , UITableViewDelegate {
     
     
     @IBAction func actionAddInstance(sender:AnyObject?) {
-        tableViewDataSource!.saveInstance(GRInstanceModel(name:"feutil mobile", host:"http://feutil1:8080/view/Mobile-Ios"))
+        tableViewDataSource!.saveInstance(GRInstanceModel(name:"localhost mobile", host:"http://localhost"))
         tableView.reloadData()
     }
     
